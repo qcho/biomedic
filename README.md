@@ -31,7 +31,7 @@
  * OC1C 16 bit timer is used for blinking. Mode: Fast PWM (non-inverting)
  * OC2 8 bit timer is used for dimming. Mode: Fast PWM (inverting)
  * Serial events showing what has happened:
- ```sh
+ ```shell script
 LONG PRESS (378696 c): changed frequency to 8Hz
 QUICK PRESS (8084 c): changed duty_cycle to 50%
 LONG PRESS (402930 c): changed frequency to 1Hz
@@ -47,7 +47,29 @@ QUICK PRESS (26451 c): changed duty_cycle to 94%
 ```
  
 ### tp_02(): UART
- * WIP
+ * Based on tp_01 code for button/light interaction.
+ * Renamed `set_freq` with `chg_freq` to be more descriptive.
+ * Added `set_dc` to allow changing duty-cycle presets in serial.
+ * The system only blocks when entering input via serial.
+    * If not should work like tp_01.
+ * The entire string of the command is not checked to enhance performance.
+ * Added nice visualization of the entire app state.
+ * Added usage on "unknown_command error"
+ * Available errors in `Error_t` typedef
+```shell script
+i Frequency	Duty-cycle
+0 >     1Hz	      0%
+1       4Hz	>    50%
+2       8Hz	     90%
+echo_mode is ON
+Type a command:
+Error[-1]: Unknown command '', Usage:
+  echo             echo-mode on/off.
+  get_state        prints current freq & dc.
+  chg_freq[0..2]   changes frequency within 3 presets in Hz.
+  chg_dc[0..2]     changes duty-cycle whithin 3 presets in %.
+  set_dc[0..100]   changes current duty-cycle to other %.
+```
 ### tp_03(): ADT
  * WIP
 

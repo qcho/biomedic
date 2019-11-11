@@ -7,7 +7,7 @@
 
 #include "core/common.h"
 #include "driver/serial.h"
-#include "driver/timer.h"
+#include "driver/led.h"
 #include "driver/button.h"
 
 /**
@@ -24,5 +24,8 @@ void ex_timers(void);
 void tp_01(void);
 void tp_02(void);
 void tp_03(void);
+
+#define HzFromCycles
+#define PercentageFromCycles
 
 #endif //ITBA_FIRMWARE_APPS_H

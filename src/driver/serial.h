@@ -14,8 +14,10 @@
 
 void serial_init(void);
 
-int serial_putchar(char c, FILE *stream);
+FILE serial_output;
+FILE serial_input;
+FILE serial_input_echo;
 
-int serial_getchar(FILE *stream);
+bool serial_incomming_data(void);
 
 #endif //ITBA_FIRMWARE_SERIAL_H

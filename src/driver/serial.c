@@ -27,3 +27,26 @@ int serial_getchar(FILE *stream) {
     loop_until_bit_is_set(UCSR0A, RXC0); /* Wait until data exists. */
     return UDR0;
 }
+
+bool serial_incomming_data(void) {
+    return bit_is_set(UCSR0A, RXC0);
+}
+
+int serial_getchar_echo(FILE *stream) {
+    loop_until_bit_is_set(UCSR0A, RXC0); /* Wait until data exists. */
+    char c = UDR0;
+    switch(c) {
+        case '\b':
+            serial_putchar(c, stream);
+            serial_putchar(' ', stream);
+            break;
+        default:
+            break;
+    }
+    serial_putchar(c, stream);
+    return c;
+}
+
+FILE serial_output = FDEV_SETUP_STREAM(serial_putchar, NULL, _FDEV_SETUP_WRITE);
+FILE serial_input = FDEV_SETUP_STREAM(NULL, serial_getchar, _FDEV_SETUP_READ);
+FILE serial_input_echo = FDEV_SETUP_STREAM(NULL, serial_getchar_echo, _FDEV_SETUP_READ);

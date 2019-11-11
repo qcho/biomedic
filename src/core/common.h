@@ -10,6 +10,8 @@
 #include <util/delay.h>
 #include <stdio.h>
 #include <avr/interrupt.h>
+#include <string.h>
+#include <stdbool.h>
 
 #define CYCLES_IN_SECOND F_CPU/60/2
 
@@ -24,5 +26,9 @@
 #define PORT_TOGGLE(letter, bit) bit_tgl(PORT##letter, bit)
 #define PIN_IS_HIGH(letter, bit) bit_is_set(PIN##letter, bit)
 #define PIN_IS_LOW(letter, bit)  bit_is_clear(PIN##letter, bit)
+
+bool string_starts_with(const char *string, const char *prefix);
+// char to integer
+uint8_t cti(char c);
 
 #endif //ITBA_FIRMWARE_COMMON_H

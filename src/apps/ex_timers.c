@@ -7,8 +7,7 @@
 void ex_timers(void) {
     DDR_OUTPUT(B,PB7);
 
-    timer_8bit_init_2_pwm();
-    OCR2 = STEP8_LOW;
+    led_init();
 
     //timer_16bit_init_1c_pwm();
     //OCR1A = STEP16_LOW;

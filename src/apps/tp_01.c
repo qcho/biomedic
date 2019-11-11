@@ -1,17 +1,16 @@
 #include "../apps.h"
 
+struct App {
+
+};
+
 void tp_01(void) {
     DDR_OUTPUT(B, PB7);
     DDR_INPUT(D, PD7);
     uint8_t button_history = 0;
     long press_cycles = 0;
 
-    timer_8bit_init_2_pwm();
-    OCR2 = STEP8_LOW;
-
-    timer_16bit_init_1c_pwm();
-    OCR1A = STEP16_LOW;
-    OCR1C = OCR1A/2;
+    led_init();
 
     for(;;) {
         button_update(&button_history, PIN_IS_HIGH(D, PD7));
@@ -22,12 +21,15 @@ void tp_01(void) {
 
         if (button_is_released(&button_history)) {
             if (press_cycles > CYCLES_IN_SECOND) {
-                OCR1A = timer_16bit_cycle(OCR1A);
-                OCR1C = OCR1A/2;
-                printf("LONG PRESS (%lu c): changed frequency to %uHz\n", press_cycles, 7200/OCR1C);
+                led_frequency_rotate();
+                printf("LONG PRESS (%lu c): changed frequency to %uHz\n",
+                       press_cycles,
+                       led_frequency_get_hertz());
             } else {
-                OCR2 = timer_8bit_cycle(OCR2);
-                printf("QUICK PRESS (%lu c): changed duty_cycle to %u%%\n", press_cycles, (100*OCR2)/0xFF);
+                led_duty_cycle_rotate();
+                printf("QUICK PRESS (%lu c): changed duty_cycle to %u%%\n",
+                       press_cycles,
+                       led_duty_cycle_get_percentage());
             }
             press_cycles = 0;
         }

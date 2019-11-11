@@ -2,7 +2,7 @@
 
 void ex_button(void) {
     DDR_OUTPUT(B, PB7);
-    DDR_INPUT(D, PD7);
+    DDR_INPUT(D, 7U);
     uint8_t button_history = 0;
     long press_cycles = 0;
 
