@@ -1,9 +1,5 @@
 #include "../apps.h"
 
-struct App {
-
-};
-
 void tp_01(void) {
     DDR_OUTPUT(B, PB7);
     DDR_INPUT(D, PD7);

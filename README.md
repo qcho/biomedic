@@ -45,6 +45,27 @@ QUICK PRESS (19914 c): changed duty_cycle to 0%
 QUICK PRESS (31178 c): changed duty_cycle to 50%
 QUICK PRESS (26451 c): changed duty_cycle to 94%
 ```
+
+#### Button Implementation
+
+```mermaid
+sequenceDiagram
+    participant fgets
+    participant get_char
+    participant put_char
+    participant UART
+    activate fgets
+    fgets->>+get_char: dame letra
+    get_char->>+UART: espero letra
+    UART-->>-get_char: c
+    get_char->>+put_char: a la consola
+    put_char->>+UART: imprimir letra
+    UART->>-put_char: _
+    put_char->>-get_char: _
+    get_char-->>-fgets: c
+    fgets-->>-fgets: while not new_line
+```
+
  
 ### tp_02(): UART
  * Based on tp_01 code for button/light interaction.

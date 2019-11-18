@@ -1,7 +1,3 @@
-//
-// Created by Qcho on 05/11/2019.
-//
-
 #ifndef ITBA_FIRMWARE_APPS_H
 #define ITBA_FIRMWARE_APPS_H
 
