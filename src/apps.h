@@ -9,6 +9,8 @@
 #include "driver/serial.h"
 #include "driver/led.h"
 #include "driver/button.h"
+#include "driver/adc.h"
+#include "driver/timer.h"
 
 /**
  * Some examples to try things
@@ -17,6 +19,7 @@ void ex_blink(void);
 void ex_button(void);
 void ex_serial(void);
 void ex_timers(void);
+void ex_motors(void);
 
 /**
  * TPs (Trabajos prácticos)

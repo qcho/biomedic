@@ -70,8 +70,15 @@ Error[-1]: Unknown command '', Usage:
   chg_dc[0..2]     changes duty-cycle whithin 3 presets in %.
   set_dc[0..100]   changes current duty-cycle to other %.
 ```
-### tp_03(): ADT
- * WIP
+### tp_03(): ADC
+ * Using AREF for VCC and GROUND from ADC section. (Measured at `2.471V`)
+ * Using a capacitor would reduce noise.
+ * printf of floats is not implemented in avr-c library. Using printf with `/` & `%` instead.
+ * Added 10k resistor next to NTC thermistor.
+ * adc_read allows any channel to be read
+    * Using conversion wait until ADSC is zero again.
+ * For temeprature conversion used the [beta parameter equation aproximation](https://en.wikipedia.org/wiki/Thermistor#B_or_.CE.B2_parameter_equation)
+    * `B` value calibrated with multimeter's thermal probe for provided thermistor
 
 ## Examples
 ### ex_blink()

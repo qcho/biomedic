@@ -7,5 +7,5 @@ int main(void)
     stdout = stderr = &serial_output;
     stdin  = &serial_input;
 
-    tp_02();
+    tp_03();
 }

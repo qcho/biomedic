@@ -11,3 +11,7 @@ bool string_starts_with(const char *string, const char *prefix) {
 uint8_t cti(char c) {
     return c - '0';
 }
+
+uint16_t integer_division_ceil(uint16_t x, uint16_t y) {
+    return x/y + (x%y != 0);
+}

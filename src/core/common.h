@@ -31,4 +31,6 @@ bool string_starts_with(const char *string, const char *prefix);
 // char to integer
 uint8_t cti(char c);
 
+uint16_t integer_division_ceil(uint16_t x, uint16_t y);
+
 #endif //ITBA_FIRMWARE_COMMON_H
