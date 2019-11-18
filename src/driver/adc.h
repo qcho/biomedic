@@ -1,7 +1,3 @@
-//
-// Created by Qcho on 11/11/2019.
-//
-
 #ifndef ITBA_FIRMWARE_ADC_H
 #define ITBA_FIRMWARE_ADC_H
 

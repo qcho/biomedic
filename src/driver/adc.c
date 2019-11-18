@@ -1,7 +1,3 @@
-//
-// Created by Qcho on 11/11/2019.
-//
-
 #include "adc.h"
 
 void adc_init()

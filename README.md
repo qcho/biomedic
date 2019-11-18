@@ -31,7 +31,7 @@
  * OC1C 16 bit timer is used for blinking. Mode: Fast PWM (non-inverting)
  * OC2 8 bit timer is used for dimming. Mode: Fast PWM (inverting)
  * Serial events showing what has happened:
- ```shell script
+ ```shell
 LONG PRESS (378696 c): changed frequency to 8Hz
 QUICK PRESS (8084 c): changed duty_cycle to 50%
 LONG PRESS (402930 c): changed frequency to 1Hz
@@ -100,6 +100,20 @@ Error[-1]: Unknown command '', Usage:
     * Using conversion wait until ADSC is zero again.
  * For temeprature conversion used the [beta parameter equation aproximation](https://en.wikipedia.org/wiki/Thermistor#B_or_.CE.B2_parameter_equation)
     * `B` value calibrated with multimeter's thermal probe for provided thermistor
+
+```shell
+ADC0(1022): 2.468[V]. ADC1(480): 27.837[C].
+ADC0(1023): 2.471[V]. ADC1(480): 27.837[C].
+ADC0(1023): 2.471[V]. ADC1(480): 27.837[C].
+ADC0(1023): 2.471[V]. ADC1(480): 27.837[C].
+ADC0(1022): 2.468[V]. ADC1(480): 27.837[C].
+ADC0(1023): 2.471[V]. ADC1(480): 27.837[C].
+ADC0(1023): 2.471[V]. ADC1(480): 27.837[C].
+ADC0(1023): 2.471[V]. ADC1(480): 27.837[C].
+ADC0(1023): 2.471[V]. ADC1(480): 27.837[C].
+ADC0(1022): 2.468[V]. ADC1(479): 27.928[C].
+ADC0(1023): 2.471[V]. ADC1(479): 27.928[C].
+```
 
 ## Examples
 ### ex_blink()
