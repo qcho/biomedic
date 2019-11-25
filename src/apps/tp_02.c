@@ -1,5 +1,8 @@
 #include "../apps.h"
 
+#define LED B,7
+#define BUTTON D,7
+
 enum Command {
     ECHO='e',
     GET_='g',
@@ -155,8 +158,8 @@ void tp_02(void) {
     /**
      * From TP01
      */
-    DDR_OUTPUT(B, PB7);
-    DDR_INPUT(D, PD7);
+    DDR_OUTPUT(LED);
+    DDR_INPUT(BUTTON);
     uint8_t button_history = 0;
     long press_cycles = 0;
 
@@ -241,7 +244,7 @@ void tp_02(void) {
             /**
             * From TP01
             */
-            button_update(&button_history, PIN_IS_HIGH(D, PD7));
+            button_update(&button_history, PIN_IS_HIGH(BUTTON));
 
             if (button_is_down(&button_history)) {
                 press_cycles++;

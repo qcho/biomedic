@@ -1,15 +1,18 @@
 #include "../apps.h"
 
+#define LED B,7
+#define BUTTON D,7
+
 void tp_01(void) {
-    DDR_OUTPUT(B, PB7);
-    DDR_INPUT(D, PD7);
+    DDR_OUTPUT(LED);
+    DDR_INPUT(BUTTON);
     uint8_t button_history = 0;
-    long press_cycles = 0;
+    unsigned long press_cycles = 0;
 
     led_init();
 
     for(;;) {
-        button_update(&button_history, PIN_IS_HIGH(D, PD7));
+        button_update(&button_history, PIN_IS_HIGH(BUTTON));
 
         if (button_is_down(&button_history)) {
             press_cycles++;

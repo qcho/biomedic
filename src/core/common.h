@@ -15,17 +15,26 @@
 #define bit_set(word, bit) (word) |=  _BV(bit)
 #define bit_tgl(word, bit) (word) ^=  _BV(bit)
 
-#define DDR_INPUT(letter, bit)   bit_clr(DDR##letter, bit)
-#define DDR_OUTPUT(letter, bit)  bit_set(DDR##letter, bit)
-#define PORT_HIGH(letter, bit)   bit_set(PORT##letter, bit)
-#define PORT_LOW(letter, bit)    bit_clr(PORT##letter, bit)
-#define PORT_TOGGLE(letter, bit) bit_tgl(PORT##letter, bit)
-#define PIN_IS_HIGH(letter, bit) bit_is_set(PIN##letter, bit)
-#define PIN_IS_LOW(letter, bit)  bit_is_clear(PIN##letter, bit)
+/**
+ * These macros are needed to perform two-staged pre-processing macro expansion
+ */
+#define _bit_clr(name, letter, bit)         bit_clr(name##letter, bit)
+#define _bit_set(name, letter, bit)         bit_set(name##letter, bit)
+#define _bit_tgl(name, letter, bit)         bit_tgl(name##letter, bit)
+#define _bit_is_set(name, letter, bit)      bit_is_set(name##letter, bit)
+#define _bit_is_clear(name, letter, bit)    bit_is_clear(name##letter, bit)
+
+#define DDR_INPUT(port_id)      _bit_clr(DDR, port_id)
+#define DDR_OUTPUT(port_id)     _bit_set(DDR, port_id)
+#define PORT_HIGH(port_id)      _bit_set(PORT, port_id)
+#define PORT_LOW(port_id)       _bit_clr(PORT, port_id)
+#define PORT_TOGGLE(port_id)    _bit_tgl(PORT, port_id)
+#define PIN_IS_HIGH(port_id)    _bit_is_set(PIN, port_id)
+#define PIN_IS_LOW(port_id)     _bit_is_clear(PIN, port_id)
 
 bool string_starts_with(const char *string, const char *prefix);
-// char to integer
-uint8_t cti(char c);
+
+uint8_t cti(char c); // char to integer
 
 uint16_t integer_division_ceil(uint16_t x, uint16_t y);
 
