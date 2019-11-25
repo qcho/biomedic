@@ -56,6 +56,6 @@ bool led_frequency_set_hertz(uint8_t frequency_in_hertz) {
 void led_init(void) {
     timer_8bit_init_2_pwm();
     led_duty_cycle_set_percentage(DC_L);
-    timer_16bit_init_1c_pwm();
+    timer_16bit_init_1C_pwm();
     led_frequency_set_hertz(FREQ_L);
 }
