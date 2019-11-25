@@ -1,7 +1,7 @@
 #include "../apps.h"
 
 #define THERMISTOR_SERIES_RESISTANCE 10000.0
-#define THERMISTOR_BETA_OEFFICIENT 3900.0
+#define THERMISTOR_BETA_COEFFICIENT 3900.0
 #define THERMISTOR_ZERO_KELVIN 273.15 // NTC 10kohm @25 C.
 #define THERMISTOR_NOMINAL_KELVIN 298.15
 #define THERMISTOR_NOMINAL_RESISTANCE 10000.0
@@ -24,7 +24,7 @@ uint16_t thermistor_adc_to_milli_celcius(const uint16_t adc_10bit_value) {
      * 1/T = ln(R/R_0)/B + 1/T_0
      */
     double temp = log(resistance / THERMISTOR_NOMINAL_RESISTANCE);   // ln(R/Ro)
-    temp /= THERMISTOR_BETA_OEFFICIENT;                                 // ln(R/Ro)/B
+    temp /= THERMISTOR_BETA_COEFFICIENT;                                // ln(R/Ro)/B
     temp += 1.0 / (THERMISTOR_NOMINAL_KELVIN);                          // ln(R/R_0)/B + (1/To)
     temp = 1.0 / temp;                                                  // T=1/...
     temp -= THERMISTOR_ZERO_KELVIN;                                     // K -> C
